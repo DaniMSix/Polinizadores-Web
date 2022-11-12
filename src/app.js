@@ -4,7 +4,7 @@ const myconnection = require('express-myconnection');
 const mysql = require('mysql');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-const loginRoutes = require('./routers/login');
+const loginRoutes = require('./router/login');
 
 const app= express();
 app.set('port', 4000);
@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.use(myconnection(mysql, {
-  host: 'polinizadores.mysql.database.azure.com',
+  host: 'web-paginas.mysql.database.azure.com',
   user: 'admi',
   password: 'Colegio1901',
   port: 3306,
@@ -41,8 +41,15 @@ app.listen(app.get('port'),() => {
 
 );
 
-app.use('/', loginRoutes);
+ app.use('/', loginRoutes);
 
 app.get('/', (req,res)=>{
-    res.render('home');
+    if(req.session.loggedin == true){
+      res.render('home',{name:req.session.name});
+
+    } else {
+      res.redirect('/login')
+    }
+
+
 });
