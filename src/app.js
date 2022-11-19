@@ -25,7 +25,7 @@ app.use(myconnection(mysql, {
   user: 'admi',
   password: 'Colegio1901',
   port: 3306,
-  database: 'prueba'
+  database: 'polinizadores_web'
 }, 'single'));
 
 
@@ -47,11 +47,18 @@ app.listen(app.get('port'),() => {
 
 app.get('/', (req,res)=>{
     if(req.session.loggedin == true){
-      res.render('home',{name:req.session.name});
+      res.render('home',{name: "¡Bienvenido! "+req.session.name});
 
     } else {
       res.redirect('/login')
     }
+});
 
+app.get('/homeAdmin', (req,res)=>{
+  if(req.session.loggedin == true){
+    res.render('homeAdmin',{name:'Administrador: '+req.session.name});
 
+  } else {
+    res.redirect('/login')
+  }
 });

@@ -13,8 +13,9 @@ function auth(req, res){
     const data = req.body;
 
     req.getConnection((err,conn)=>{
-        conn.query('SELECT * FROM users where  email=?', [data.email], (err, userdata)=>
+        conn.query('SELECT * FROM usuario where email=?', [data.email], (err, userdata)=>
         {
+            console.log(userdata)
             if (userdata.length>0){
                 userdata.forEach(element => {
                 bcrypt.compare(data.password, element.password, (err, isMatch)=>{
@@ -23,7 +24,13 @@ function auth(req, res){
                         } else{
                             req.session.loggedin =true;
                             req.session.name=element.name;
-                            res.redirect('/');
+                            console.log(element.rol)
+                            if(element.rol == 'publico general'){
+                                res.redirect('/');
+                            }else{
+                                res.redirect('/homeAdmin');
+                            }
+                            
                         }
                     });
                 });
@@ -38,7 +45,7 @@ function storeUser(req, res) {
     const data = req.body;
 
     req.getConnection((err,conn)=>{
-        conn.query('SELECT * FROM users where  email=?', [data.email], (err, userdata)=>
+        conn.query('SELECT * FROM usuario where email=?', [data.email], (err, userdata)=>
         {
             if (userdata.length>0){
                 res.render('login/register',{
@@ -50,7 +57,7 @@ function storeUser(req, res) {
                     data.password=hash;
             
                     req.getConnection((err,conn)=>{
-                        conn.query('INSERT INTO users SET ?',[data], (err, rows) =>{
+                        conn.query('INSERT INTO usuario (name, email, password, rol) VALUES (?, ?, ?, ?)',[data.name, data.email, data.password, 'Ecologista'], (err, rows) =>{
                             res.redirect('/');
                         });
                     });
