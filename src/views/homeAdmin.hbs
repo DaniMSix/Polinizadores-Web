@@ -1,17 +1,121 @@
+<br>
+<div class="container">
+    <style>
+        .colForm{
+            margin-top: 30px;
+            width:35%;
+            height: 20%;
+            justify-content: start;
+            box-shadow: 5px 5px 15px gray;
+        }
 
-<div class="h-12 w-full bg-gray-to-tr ">
-    <iframe src="https://uvmx-my.sharepoint.com/personal/zs20015736_estudiantes_uv_mx/_layouts/15/embed.aspx?UniqueId=2cd724ac-6fee-4428-aa4d-724489b4f212" width="556" height="414" frameborder="0" scrolling="no" 
-        allowfullscreen title="portada.png"></iframe>
+        .colTable{
+            margin-top: 30px;
+            width: 65%;
+            justify-content: end;
+            
+        }
+        .container{
+            display: flex;
+            flex-direction: row;
+        }
+
+        .titleForm{
+            margin-bottom: 30px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .mb-3{
+            margin-right: 20px;
+            margin-left: 20px;
+        }
+        
+        .v-line{
+            height: 65vh;
+            width: .2vh;
+            border-width:0;
+            color:#000;
+            background-color:#000;
+            
+        }
+
+    </style>
+
+    <div class="colForm mr-10">
+        <div class="col-12">
+            <div class="titleForm">
+                <h3>Registrar polinizador</h3>
+            </div>
+            <form action="registrarPolinizador" method="post">
+                <div class="mb-3 ">
+                    <input type="text" class="form-control" name="nombreComun" placeholder="Nombre común" required/>
+                </div>
+                <div class="mb-3 ">
+                    <input type="text" class="form-control" name="nombreCientifico" placeholder="Nombre científico" required/>
+                </div>
+                <div class="mb-3 ">
+                    <input type="text" class="form-control" name="estatus" placeholder="Estatus" required/>
+                </div>
+                <div class="mb-3 ">
+                    <input type="text" class="form-control" name="florPolinizada" placeholder="Flor polinizada" required/>
+                </div>
+
+                <button type="submit" class="btn btn-primary ml-5 mb-4">Registrar</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="v-line">
+        <hr>
+    </div>
+
+    <div class="colTable ml-10">
+        <div class="titleForm">
+                <h3>Polinizadores registrados</h3>
+            </div>
+        <table class="table ml-10">
+        <thead>
+            <tr>
+            <th scope="col">Nombre científico</th>
+            <th scope="col">Nombre común</th>
+            <th scope="col">Estatus</th>
+            <th scope="col">Poliniza a</th>
+            <th scope="col">Modificar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each userdata}}
+                <tr>
+                    <th scope="row">{{nombreCientifico}}</th>
+                    <td>{{nombreComun}}</td>
+                    <td>{{estatus}}</td>
+                    <td>{{florPolinizada}}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Modificar
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Proximamente...</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                No implementado aún
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+        </table>
+    </div>
 </div>
-
-<!-- Container for demo purpose -->
-<div>
-
-  <!-- Section: Design Block -->
-  <section class="mb-40">
-   
-  </section>
-  <!-- Section: Design Block -->
-
-</div>
-<!-- Container for demo purpose -->

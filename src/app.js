@@ -5,6 +5,7 @@ const mysql = require('mysql');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const loginRoutes = require('./router/login');
+const adminRoutes = require('./router/admin');
 
 const app= express();
 app.set('port', 4000);
@@ -43,7 +44,8 @@ app.listen(app.get('port'),() => {
 
 );
 
- app.use('/', loginRoutes);
+app.use('/', loginRoutes);
+app.use('/', adminRoutes);
 
 app.get('/', (req,res)=>{
     if(req.session.loggedin == true){

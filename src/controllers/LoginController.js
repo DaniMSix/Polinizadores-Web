@@ -28,7 +28,7 @@ function auth(req, res){
                             if(element.rol == 'publico general'){
                                 res.redirect('/');
                             }else{
-                                res.redirect('/homeAdmin');
+                                res.redirect('./listarPolinizadores');
                             }
                             
                         }
