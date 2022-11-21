@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const loginRoutes = require('./router/login');
 const adminRoutes = require('./router/admin');
 
+
 const app= express();
 app.set('port', 4000);
 
@@ -37,6 +38,9 @@ app.use(session({
 	resave: true,
 	saveUninitialized: true
 }));
+
+
+
 
 app.listen(app.get('port'),() => {
     console.log('Listening on port', app.get('port'));

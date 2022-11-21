@@ -1,23 +1,5 @@
 <br>
 <div class="container">
-    <div class="colFlora mr-5">
-        <a class="btn btn-success" href="http://localhost:4000/listarFlora">Flora</a>
-    </div>
-    <div class="colEvento">
-        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Eventos</button>
-    </div>
-
-    <style>
-        .colFlora{
-            margin-left: 90%;
-        }
-        .colEvento{
-
-        }
-        
-    </style>
-</div>
-<div class="container">
     <style>
         .colForm{
             margin-top: 30px;
@@ -57,21 +39,15 @@
             background-color:#000;
             
         }
-        .alert{
-            width: 25%;
-            margin-left: 10px;
-            margin-top: 5px;
-            margin-right: 5px;
-        }
 
     </style>
 
     <div class="colForm mr-10">
         <div class="col-12">
             <div class="titleForm">
-                <h3>Registrar polinizador</h3>
+                <h3>Registrar Flora</h3>
             </div>
-            <form action="registrarPolinizador" method="post">
+            <form action="registrarFlora" method="post">
                 <div class="mb-3 ">
                     <input type="text" class="form-control" name="nombreComun" placeholder="Nombre común" required/>
                 </div>
@@ -81,10 +57,7 @@
                 <div class="mb-3 ">
                     <input type="text" class="form-control" name="estatus" placeholder="Estatus" required/>
                 </div>
-                <div class="mb-3 ">
-                    <input type="text" class="form-control" name="florPolinizada" placeholder="Flor polinizada" required/>
-                </div>
-
+                
                 <button type="submit" class="btn btn-primary ml-5 mb-4">Registrar</button>
                 
             </form>
@@ -97,7 +70,7 @@
 
     <div class="colTable ml-10">
         <div class="titleForm">
-                <h3>Polinizadores registrados</h3>
+                <h3>Flora registrada</h3>
             </div>
         <table class="table ml-8">
         <thead>
@@ -105,7 +78,6 @@
             <th scope="col">Nombre científico</th>
             <th scope="col">Nombre común</th>
             <th scope="col">Estatus</th>
-            <th scope="col">Poliniza a</th>
             <th scope="col">Modificar</th>
             </tr>
         </thead>
@@ -115,7 +87,6 @@
                     <th scope="row">{{nombreCientifico}}</th>
                     <td>{{nombreComun}}</td>
                     <td>{{estatus}}</td>
-                    <td>{{florPolinizada}}</td>
                     <td>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         Modificar
@@ -144,10 +115,3 @@
         </table>
     </div>
 </div>
-
-
-
-
-
-
-
