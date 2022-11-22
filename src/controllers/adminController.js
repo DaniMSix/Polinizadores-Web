@@ -30,18 +30,24 @@ async function listarFlora(req, res){
 
 
 async function registrarPolinizador(req, res){
-    
     const data = req.body;
-    req.getConnection((err, conn) =>{
-    conn.query('INSERT INTO polinizador SET ?', [data], (err, rows=>{
-        if(!err){
-            res.redirect('./homeAdmin')
-        }else{
-            console.log("Error")
-        }
-    }))
+    req.getConnection((err, conn)=>{
+        conn.query('SELECT * FROM polinizador WHERE nombreCientifico=? AND florPolinizada=?', [data.nombreCientifico, data.florPolinizada], (err, rows)=>{
+            if(rows.length>0){
+                console.log("No se puede registrar la misma flor para el mismo polinizador")
+            }else{
+                req.getConnection((err, conn) =>{
+                    conn.query('INSERT INTO polinizador SET ?', [data], (err, rows=>{
+                        if(!err){
+                            res.redirect('./homeAdmin')
+                        }else{
+                            console.log("Error")
+                        }
+                    }))
+                })
+            }
+        })
     })
-    
 }
 
 async function registrarFlora(req, res){
