@@ -7,7 +7,6 @@ const bodyParser = require('body-parser');
 const loginRoutes = require('./router/login');
 const adminRoutes = require('./router/admin');
 
-
 const app= express();
 app.set('port', 4000);
 
@@ -29,9 +28,6 @@ app.use(myconnection(mysql, {
   port: 3306,
   database: 'polinizadores_web'
 }, 'single'));
-
-
-
 
 app.use(session({
 	secret: 'secret',

@@ -1,4 +1,5 @@
 const bcrypt =require('bcrypt');
+const { response } = require('express');
 
 function login(req, res) {
     res.render('login/index');
@@ -28,7 +29,7 @@ function auth(req, res){
                             if(element.rol == 'publico general'){
                                 res.redirect('/');
                             }else{
-                                res.render('/homeAdmin');
+                                res.render('./homeAdmin');
                             }
                             
                         }
@@ -57,8 +58,8 @@ function storeUser(req, res) {
                     data.password=hash;
             
                     req.getConnection((err,conn)=>{
-                        conn.query('INSERT INTO usuario (name, email, password, rol) VALUES (?, ?, ?, ?)',[data.name, data.email, data.password, 'Ecologista'], (err, rows) =>{
-                            res.redirect('/');
+                        conn.query('INSERT INTO usuario (name, email, password, rol) VALUES (?, ?, ?, ?)',[data.name, data.email, data.password, 'publico general'], (err, rows) =>{
+                            res.redirect('/login');
                         });
                     });
                 });
