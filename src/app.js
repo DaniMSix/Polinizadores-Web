@@ -6,6 +6,8 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const loginRoutes = require('./router/login');
 const adminRoutes = require('./router/admin');
+const publicRoutes = require('./router/publicoGeneral')
+
 
 const app= express();
 app.set('port', 4000);
@@ -35,17 +37,14 @@ app.use(session({
 	saveUninitialized: true
 }));
 
-
-
-
 app.listen(app.get('port'),() => {
     console.log('Listening on port', app.get('port'));
 }
-
 );
 
 app.use('/', loginRoutes);
 app.use('/', adminRoutes);
+app.use('/', publicRoutes);
 
 app.get('/', (req,res)=>{
     if(req.session.loggedin == true){

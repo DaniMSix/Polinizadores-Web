@@ -16,7 +16,7 @@ function auth(req, res){
     req.getConnection((err,conn)=>{
         conn.query('SELECT * FROM usuario where email=?', [data.email], (err, userdata)=>
         {
-            console.log(userdata)
+            
             if (userdata.length>0){
                 userdata.forEach(element => {
                 bcrypt.compare(data.password, element.password, (err, isMatch)=>{
@@ -25,7 +25,6 @@ function auth(req, res){
                         } else{
                             req.session.loggedin =true;
                             req.session.name=element.name;
-                            console.log(element.rol)
                             if(element.rol == 'publico general'){
                                 res.redirect('/');
                             }else{
@@ -54,12 +53,10 @@ function storeUser(req, res) {
                 })
             } else{
                 bcrypt.hash(data.password,12).then(hash => {
-
                     data.password=hash;
-            
                     req.getConnection((err,conn)=>{
                         conn.query('INSERT INTO usuario (name, email, password, rol) VALUES (?, ?, ?, ?)',[data.name, data.email, data.password, 'publico general'], (err, rows) =>{
-                            res.redirect('/login');
+                            res.redirect('/')
                         });
                     });
                 });
@@ -75,6 +72,8 @@ function logout(req, res){
         res.redirect('/login')
     }
 }
+
+
 
 module.exports={
     login,

@@ -32,7 +32,7 @@ async function listarFlora(req, res){
 async function registrarPolinizador(req, res){
     const data = req.body;
     req.getConnection((err, conn)=>{
-        conn.query('SELECT * FROM polinizador WHERE nombreCientifico=? AND florPolinizada=?', [data.nombreCientifico, data.florPolinizada], (err, rows)=>{
+        
             if(rows.length>0){
                 console.log("No se puede registrar la misma flor para el mismo polinizador")
             }else{
@@ -46,7 +46,7 @@ async function registrarPolinizador(req, res){
                     }))
                 })
             }
-        })
+    
     })
 }
 

@@ -1,0 +1,60 @@
+<!-- component -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div
+      class="min-h-screen flex flex-col items-center justify-center bg-gray-100"
+    >
+    
+      <div
+        class="
+          flex flex-col
+          bg-white
+          shadow-md
+          px-4
+          sm:px-6
+          md:px-8
+          lg:px-10
+          py-8
+          rounded-3xl
+          w-50
+          max-w-md
+        "
+      >
+        <div class="font-medium self-center text-xl sm:text-3xl text-gray-800">
+          Iniciar sesión
+        </div>
+        <div class="mt-4 self-center text-xl sm:text-sm text-gray-800">
+          Ingresa tus credenciales
+        </div>
+<form action="registrarPropuesta" method="post">
+        <div class="mb-3 ">
+                    <input type="text" class="form-control" name="descripcion" placeholder="Nombre común" required/>
+                </div>
+                <div class="mb-3 ">
+                    <input type="text" class="form-control" name="fechaavistamiento" placeholder="Nombre científico" required/>
+                </div>
+                <div class="mb-3 ">
+                    <input type="text" class="form-control" name="horaavistamiento" placeholder="Estatus" required/>
+                </div>
+
+                <button type="submit" class="btn btn-primary ml-5 mb-4">Registrar</button>
+                
+          </form>
+        </div>
+      </div>
+      
+    </div>
+  </body>
+</html>
