@@ -23,10 +23,20 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-app.use(myconnection(mysql, {
+//conexión Azure
+/*app.use(myconnection(mysql, {
   host: 'web-paginas.mysql.database.azure.com',
   user: 'admi',
   password: 'Colegio1901',
+  port: 3306,
+  database: 'polinizadores_web'
+}, 'single'));*/
+
+//conexión local
+app.use(myconnection(mysql, {
+  host: 'localhost',
+  user: 'brandon',
+  password: 'Trujillo17.',
   port: 3306,
   database: 'polinizadores_web'
 }, 'single'));
